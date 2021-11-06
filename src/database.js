@@ -1,5 +1,7 @@
 module.exports = (connectionString) => {
   return {
-    query: () => {}
+    query: () => {
+      return [];
+    }
   };
 };
