@@ -1,8 +1,8 @@
 const { expect } = require('chai');
 
-const db = require('../src/database')('fake connection string');
+const db = require('../../src/adapters/database')('fake connection string');
 
-describe('database.js', () => {
+describe('src/adapters/database.js', () => {
   describe('when calling db.query()', () => {
     it('should return empty array', () => {
       const expected = [];

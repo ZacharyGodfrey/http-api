@@ -1,10 +1,6 @@
-const port = process.env.PORT || 8080;
-const connectionString = process.env.CONNECTION_STRING;
+const { database, server } = require('./adapters');
 
-const db = require('./database')(connectionString);
-const router = require('./router')(db);
-const app = require('./app')(router);
+const db = database(process.env.CONNECTION_STRING);
+const app = server(db);
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+app.start(process.env.PORT || 8080);
