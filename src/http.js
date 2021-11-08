@@ -1,4 +1,4 @@
-const { uuid } = require('../helpers');
+const { uuid } = require('./helpers');
 
 const request = {
   fromExpress: (req) => {

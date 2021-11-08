@@ -1,6 +1,6 @@
-const { database, server } = require('./adapters');
+const db = require('./database')(process.env.CONNECTION_STRING);
+const server = require('./server')(db);
 
-const db = database(process.env.CONNECTION_STRING);
-const app = server(db);
-
-app.start(process.env.PORT || 8080);
+server.listen(process.env.PORT || 8080, () => {
+  console.log(`Listening on port ${port}`);
+});

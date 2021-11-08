@@ -1,8 +1,8 @@
 const { expect } = require('chai');
 
-const db = require('../../src/adapters/database')('fake connection string');
+const db = require('../src/database')('fake connection string');
 
-describe('src/adapters/database.js', () => {
+describe('src/database.js', () => {
   describe('when calling db.userByToken()', () => {
     it('should return null', async () => {
       const expected = null;
