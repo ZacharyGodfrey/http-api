@@ -20,6 +20,6 @@ module.exports = {
     return { ...request };
   },
   postHandler: async (db, request, response) => {
-    //
+    console.log(`${response.status} POST /test`);
   },
 };
