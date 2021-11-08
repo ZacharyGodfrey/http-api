@@ -1,7 +1,9 @@
 module.exports = (connectionString) => {
   return {
-    query: () => {
-      return [];
+    userByToken: async (token) => {
+      return {
+        id: token
+      };
     }
   };
 };

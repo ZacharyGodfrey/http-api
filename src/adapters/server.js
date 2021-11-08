@@ -42,10 +42,25 @@ const createRouter = (db) => {
 
   // Defined endpoints
   router.post('/:actionName', async (req, res) => {
-    const request = http.request.fromExpress(req);
-    const r = await handleRequest(req.params.actionName, request, db);
+    const action = actions[req.params.actionName];
 
-    res.status(r.status).json(r.body);
+    if (!action) {
+      next();
+    } else {
+      const request = http.request.fromExpress(req);
+
+      if (action.preHandler) {
+        await action.preHandler(db, request);
+      }
+
+      const response = await handleRequest(db, action, request);
+
+      if (action.postHandler) {
+        await action.postHandler(db, request, response);
+      }
+
+      res.status(response.status).json(response.body);
+    }
   });
 
   // Catch-all
@@ -58,40 +73,31 @@ const createRouter = (db) => {
   return router;
 };
 
-const handleRequest = async (actionName, request, db) => {
+const handleRequest = async (db, action, request) => {
   try {
-    const action = actions[actionName];
-
-    if (!action) {
-      return http.response.notFound();
-    }
-
-    const handler = action.handler(db);
-    let user = null;
-
-    if (handler.authenticate) {
+    if (action.authenticate) {
       if (!request.token) {
-        return http.response.forbidden();
+        return http.response.badRequest(['Token Required']);
       } else {
-        user = db.userByToken(request.token);
+        request.user = await db.userByToken(request.token);
 
-        if (!user || !(await handler.authorize(user))) {
+        if (!request.user) {
           return http.response.forbidden();
         }
       }
     }
 
-    const errors = await handler.validate(user, request.data);
+    const errors = await action.validate(db, request);
 
     if (errors.length > 0) {
       return http.response.badRequest(errors);
     }
 
-    const result = await handler.execute(user, request.data);
+    const result = await action.execute(db, request);
 
     return http.response.success(result);
   } catch (error) {
-    return http.response.serverError();
+    return http.response.serverError(error.message);
   }
 };
 

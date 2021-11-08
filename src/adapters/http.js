@@ -7,6 +7,7 @@ const request = {
       time: new Date().toISOString(),
       token: `${req.body.token || ''}`,
       data: req.body.data,
+      user: null,
     };
   },
 };
@@ -40,11 +41,11 @@ const response = {
       messages: ['Not Found'],
     },
   }),
-  serverError: () => ({
+  serverError: (message) => ({
     status: 500,
     body: {
       data: null,
-      messages: ['Server Error'],
+      messages: [message || 'Server Error'],
     },
   }),
 };
