@@ -1,6 +1,6 @@
 const express = require('express');
 
-const http = require('./http');
+const { http } = require('./util');
 const actions = require('./actions');
 
 const handleRequest = async (db, action, request) => {
