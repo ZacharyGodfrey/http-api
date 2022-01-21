@@ -1,5 +1,5 @@
-module.exports = (config) => {
-    const { useConsole } = config;
+module.exports = (env) => {
+    const { useConsole } = env;
 
     return {
         info: (value) => {

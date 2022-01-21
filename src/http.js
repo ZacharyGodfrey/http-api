@@ -1,5 +1,5 @@
-module.exports = (config) => {
-    const { environment } = config;
+module.exports = (env) => {
+    const { environment } = env;
 
     return {
         request: (actionName, token, data) => {
