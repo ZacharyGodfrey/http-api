@@ -8,8 +8,10 @@ This project intends to use a small subset of the HTTP specification to implemen
 - [x] Build out basic server infrastructure
 - [x] Add unit testing and test coverage reporting
 - [ ] Add database schema and query functions
+- [ ] Add script to create and seed the database
 - [ ] Implement example endpoints
 - [ ] Document endpoints in README
+- [ ] Add script to generate a JavaScript SDK for calling the API
 
 ## API Design Principles
 
