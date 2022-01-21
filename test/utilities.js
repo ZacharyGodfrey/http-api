@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const util = require('../src/util');
+const util = require('../src/utilities');
 
 describe('src/util.js', () => {
 	describe('hmac()', () => {
