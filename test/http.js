@@ -7,29 +7,38 @@ const http = createHttp({ environment: 'local' });
 describe('src/http.js', () => {
 	describe('request()', () => {
 		it('should create a valid request object', () => {
-			const expected = {
-				actionName: 'fake-name',
-				token: 'fake-token',
-				data: {
-					abc: 123
-				}
-			};
+			const action = 'fake-name';
+			const token = 'fake-token';
+			const data = { abc: 123 };
+			const actual = http.request(actionName, token, data);
 
-			const actual = http.request(expected.actionName, expected.token, expected.data);
-
-			expect(actual.actionName).to.eq(expected.actionName);
-			expect(actual.token).to.eq(expected.token);
-			expect(actual.data).to.deep.eq(expected.data);
+			expect(actual.actionName).to.eq(actionName);
+			expect(actual.token).to.eq(token);
+			expect(actual.data).to.deep.eq(data);
 		});
 	});
 
 	describe('response', () => {
 		describe('success()', () => {
-			it('should return status code 200', () => {
-				const expected = 200;
-				const actual = http.response.success();
+			describe('when no data is specified', () => {
+				it('should return status code 200', () => {
+					const statusCode = 200;
+					const actual = http.response.success();
 
-				expect(actual.status).to.eq(expected);
+					expect(actual.status).to.eq(statusCode);
+					expect(actual.body.data).to.eq(null);
+				});
+			});
+
+			describe('when data is specified', () => {
+				it('should return status code 200', () => {
+					const statusCode = 200;
+					const data = { abc: 123 };
+					const actual = http.response.success(data);
+
+					expect(actual.status).to.eq(statusCode);
+					expect(actual.body.data).to.eq(data);
+				});
 			});
 		});
 
@@ -46,28 +55,28 @@ describe('src/http.js', () => {
 
 		describe('notAuthorized()', () => {
 			it('should return status code 401', () => {
-				const expected = 401;
+				const statusCode = 401;
 				const actual = http.response.notAuthorized();
 
-				expect(actual.status).to.eq(expected);
+				expect(actual.status).to.eq(statusCode);
 			});
 		});
 
 		describe('forbidden()', () => {
 			it('should return status code 403', () => {
-				const expected = 403;
+				const statusCode = 403;
 				const actual = http.response.forbidden();
 
-				expect(actual.status).to.eq(expected);
+				expect(actual.status).to.eq(statusCode);
 			});
 		});
 
 		describe('notFound()', () => {
 			it('should return status code 404', () => {
-				const expected = 404;
+				const statusCode = 404;
 				const actual = http.response.notFound();
 
-				expect(actual.status).to.eq(expected);
+				expect(actual.status).to.eq(statusCode);
 			});
 		});
 
