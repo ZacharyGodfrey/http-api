@@ -2,6 +2,15 @@
 
 This project intends to use a small subset of the HTTP specification to implement a simple web API. The API will use JSON as the data format and HTTP as the transport protocol, but it's definitely not RESTful and isn't necessarily RPC either. This project is intentionally deviating from current "best practices" in pursuit of greater simplicity.
 
+## Development Roadmap
+
+- [x] Outline design principles in README
+- [x] Build out basic server infrastructure
+- [x] Add unit testing and test coverage reporting
+- [ ] Add database schema and query functions
+- [ ] Implement example endpoints
+- [ ] Document endpoints in README
+
 ## API Design Rules
 
 The API is built according to the following rules:
@@ -61,12 +70,6 @@ Only the following status codes will be returned:
 1. Create a `.env` file in the root directory of the repo
 2. Add the following line to the `.env` file: `DB_CONNECTION=your-connection-string`
 3. Run `npm i` to install dependencies
-4. Run `npm start` to run the API locally
-5. Send `POST` requests to `http://localhost:8080`
-
-## Roadmap
-
-- Build out basic server infrastructure
-- Add database schema and query functions
-- Implement example endpoints
-- Document endpoints in README
+4. Run `npm run coverage` to execute unit tests and generage coverage report
+5. Run `npm run start` to run the API locally
+6. Send `POST` requests to `http://localhost:8080`
