@@ -1,7 +1,7 @@
 const actions = [
-  require('./test'),
+	require('./test'),
 ];
 
 module.exports = actions.reduce((result, action) => {
-  return Object.assign(result, { [action.name]: action });
+	return Object.assign(result, { [action.name]: action });
 }, {});

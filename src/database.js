@@ -1,7 +1,7 @@
 module.exports = (connectionString) => {
-  return {
-    userByToken: async (token) => {
-      return null;
-    }
-  };
+	return {
+		userByToken: async (token) => {
+			return null;
+		}
+	};
 };
