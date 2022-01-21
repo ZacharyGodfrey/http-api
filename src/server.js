@@ -1,8 +1,7 @@
 const express = require('express');
 
-const { http } = require('./util');
-
-module.exports = (endpoint) => {
+module.exports = (context, requestHandler) => {
+	const { logger, http } = context;
 	const server = express();
 
 	server.set('json spaces', 2);
@@ -28,13 +27,31 @@ module.exports = (endpoint) => {
 	});
 
 	// Request Handler
-	server.post('/:actionName', endpoint);
+	server.post('/:actionName', async (req, res, next) => {
+		try {
+			logger.info(`REQUEST /${req.params.actionName}\n${JSON.stringify(req.body, null, 2)}`);
+
+			const { token, data } = req.body;
+			const request = http.request(req.params.actionName, token || '', data);
+			const { status, body } = await requestHandler(request);
+
+			res.status(status).json(body);
+		} catch (error) {
+			const { message } = error;
+			const { status, body } = http.response.serverError(message);
+
+			logger.error(message);
+			res.status(status).json(body);
+		} finally {
+			logger.info(`RESPONSE\n${JSON.stringify(req.body, null, 2)}`);
+		}
+	});
 
 	// 404
 	server.use((req, res) => {
-		const r = http.response.notFound();
+		const { status, body } = http.response.notFound();
 
-		res.status(r.status).json(r.body);
+		res.status(status).json(body);
 	});
 
 	return server;

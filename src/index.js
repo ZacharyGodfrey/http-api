@@ -1,8 +1,20 @@
-const { DB_CONNECTION, PORT } = process.env;
-const port = PORT || 8080;
-const db = require('./database')(DB_CONNECTION);
-const actions = require('./actions');
-const endpoint = require('./endpoint')(db, actions);
-const server = require('./server')(endpoint);
+const { DB_CONNECTION, LOG_CONSOLE, NODE_ENV, PORT } = process.env;
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
+const context = {
+    db: require('./database')(DB_CONNECTION),
+    logger: require('./logger')({
+        useConsole: LOG_CONSOLE === 'true'
+    }),
+    http: require('./http')({
+        environment: NODE_ENV || 'local'
+    })
+};
+
+const actions = require('./actions');
+const requestHandler = require('./request-handler')(context, actions);
+const server = require('./server')(context, requestHandler);
+const port = PORT || 8080;
+
+server.listen(port, () => {
+    context.logger.info(`API is listening on port ${port}`);
+});

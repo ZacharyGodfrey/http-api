@@ -18,8 +18,5 @@ module.exports = {
 	},
 	execute: async (db, request) => {
 		return { ...request };
-	},
-	postHandler: async (db, request, response) => {
-		console.log(`${response.status} POST /test`);
-	},
+	}
 };
