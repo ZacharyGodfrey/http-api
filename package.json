@@ -1,7 +1,7 @@
 {
 	"scripts": {
 		"test": "mocha",
-		"coverage": "nyc mocha",
+		"coverage": "nyc npm run test",
 		"start": "node scripts/start.js"
 	},
 	"dependencies": {
@@ -19,10 +19,14 @@
 		"recursive": true
 	},
 	"nyc": {
-		"all": true,
+		"all": false,
+		"check-coverage": true,
 		"reporter": [
 			"text-summary",
 			"text"
-		]
+		],
+		"lines": 90,
+		"statements": 90,
+		"branches": 90
 	}
 }
