@@ -1,4 +1,4 @@
-name: CI
+name: Test Pull Request
 on:
   workflow_dispatch:
   pull_request:
