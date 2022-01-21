@@ -11,15 +11,15 @@ This project intends to use a small subset of the HTTP specification to implemen
 - [ ] Implement example endpoints
 - [ ] Document endpoints in README
 
-## API Design Rules
+## API Design Principles
 
-The API is built according to the following rules:
+The API is built according to the following principles:
 
-1. All requests must use the HTTP `POST` method.
+1. All requests will use the HTTP `POST` method.
 2. The name of the action to be performed will be contained in the request URI.
 3. All input data needed to perform the action will be contained in the request body as JSON.
 4. Headers, query string parameters, cookies, and all other request information will be ignored.
-5. All HTTP responses will have a uniform structure.
+5. All HTTP requests and responses will have a common format.
 
 ### HTTP Request Format
 
