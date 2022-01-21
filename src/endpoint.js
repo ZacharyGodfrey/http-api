@@ -1,5 +1,4 @@
 const { http } = require('./util');
-const actions = require('./actions');
 
 const handleRequest = async (db, action, request) => {
     try {
@@ -29,7 +28,7 @@ const handleRequest = async (db, action, request) => {
     }
 };
 
-module.exports = (db) => {
+module.exports = (db, actions) => {
     return async (req, res, next) => {
         const action = actions[req.params.actionName];
 

@@ -1,9 +1,8 @@
 const express = require('express');
 
 const { http } = require('./util');
-const endpoint = require('./endpoint');
 
-module.exports = (db) => {
+module.exports = (endpoint) => {
     const server = express();
 
     server.set('json spaces', 2);
@@ -29,7 +28,7 @@ module.exports = (db) => {
     });
 
     // Request Handler
-    server.post('/:actionName', endpoint(db));
+    server.post('/:actionName', endpoint);
 
     // 404
     server.use((req, res) => {
