@@ -13,7 +13,7 @@ const context = {
 
 const actions = require('../src/actions');
 const requestHandler = require('../src/request-handler')(context, actions);
-const server = require('../src/server')(context, requestHandler);ß
+const server = require('../src/server')(context, requestHandler);
 
 server.listen(env.port, () => {
 	context.logger.info(`API is listening on port ${env.port}`);
