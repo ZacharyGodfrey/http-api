@@ -58,12 +58,12 @@ All response bodies have the following keys:
 
 Only the following status codes will be returned:
 
-- 200: The requested action was performed successfully.
-- 400: The input data was not valid for the requested action.
-- 401: The requested action requires a valid authentication token.
-- 403: The provided authentication token is lacking required permissions to perform the requested action.
-- 404: The requested action does not exist.
-- 500: The server encountered an unexpected error while performing the requested action.
+- `200`: The requested action was performed successfully.
+- `400`: The input data was not valid for the requested action.
+- `401`: The requested action requires a valid authentication token.
+- `403`: The provided authentication token is lacking required permissions to perform the requested action.
+- `404`: The requested action does not exist.
+- `500`: The server encountered an unexpected error while performing the requested action.
 
 ## Local Development
 
