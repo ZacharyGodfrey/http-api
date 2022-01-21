@@ -1,6 +1,6 @@
-# rpc-api
+# http-api
 
-This application intends to use a small subset of the HTTP specification to implement a simple web API. Unlike RESTful APIs which focus on the *nouns* of a particular domain, this API will instead focus on the *verbs* of a domain.
+This project intends to use a small subset of the HTTP specification to implement a simple web API. The API will use JSON as the data format and HTTP as the transport protocol, but it's definitely not RESTful and isn't necessarily RPC either. This project is intentionally deviating from current "best practices" in pursuit of greater simplicity.
 
 ## API Design Rules
 
@@ -55,3 +55,18 @@ Only the following status codes will be returned:
 - 403: The provided authentication token is lacking required permissions to perform the requested action.
 - 404: The requested action does not exist.
 - 500: The server encountered an unexpected error while performing the requested action.
+
+## Local Development
+
+1. Create a `.env` file in the root directory of the repo
+2. Add the following line to the `.env` file: `DB_CONNECTION=your-connection-string`
+3. Run `npm i` to install dependencies
+4. Run `npm start` to run the API locally
+5. Send `POST` requests to `http://localhost:8080`
+
+## Roadmap
+
+- Build out basic server infrastructure
+- Add database schema and query functions
+- Implement example endpoints
+- Document endpoints in README
