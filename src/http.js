@@ -54,7 +54,7 @@ module.exports = (env) => {
                 status: 500,
                 body: {
                     data: null,
-                    messages: environment === 'production' ? 'Server Error' : message,
+                    messages: [environment === 'production' ? 'Server Error' : message],
                 },
             }),
         }

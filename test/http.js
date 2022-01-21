@@ -63,8 +63,8 @@ describe('src/http.js', () => {
 		});
 
 		describe('notFound()', () => {
-			it('should return status code 400', () => {
-				const expected = 400;
+			it('should return status code 404', () => {
+				const expected = 404;
 				const actual = http.response.notFound();
 
 				expect(actual.status).to.eq(expected);
