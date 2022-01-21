@@ -1,10 +1,12 @@
+const { uuid } = require('./utilities');
+
 module.exports = (env) => {
     const { environment } = env;
 
     return {
         request: (actionName, token, data) => {
             return {
-                id: v4(),
+                id: uuid(),
                 time: new Date().toISOString(),
                 actionName,
                 token,
