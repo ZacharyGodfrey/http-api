@@ -14,11 +14,36 @@ The API is built according to the following rules:
 
 ### HTTP Request Format
 
-TBD
+All request bodies have the following keys:
+
+- `token`: An authentication token string (empty when not authenticated)
+- `data`: The input data needed for the action (could be any valid JSON value)
+
+```
+POST /action-name
+{
+    "token": "auth-token-value",
+    "data": {
+        "key": "value"
+    }
+}
+```
 
 ### HTTP Response Format
 
-TBD
+All response bodies have the following keys:
+
+- `messages`: Could be success messages or error messages depending on the response status
+- `data`: The output data returned from the action (could be any valid JSON value)
+
+```
+{
+    "messages": [],
+    "data": {
+        "key": "value"
+    }
+}
+```
 
 ### HTTP Status Codes
 
@@ -26,7 +51,7 @@ Only the following status codes will be returned:
 
 - 200: The requested action was performed successfully.
 - 400: The input data was not valid for the requested action.
-- 401: The requested action requires an authentication token.
+- 401: The requested action requires a valid authentication token.
 - 403: The provided authentication token is lacking required permissions to perform the requested action.
 - 404: The requested action does not exist.
-- 500: The server encountered an error.
+- 500: The server encountered an unexpected error while performing the requested action.
