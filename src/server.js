@@ -36,14 +36,14 @@ module.exports = (context, requestHandler) => {
 			const { status, body } = await requestHandler(request);
 
 			res.status(status).json(body);
+			logger.info(`RESPONSE ${status}\n${JSON.stringify(body, null, 2)}`);
 		} catch (error) {
 			const { message } = error;
 			const { status, body } = http.response.serverError(message);
 
 			logger.error(message);
 			res.status(status).json(body);
-		} finally {
-			logger.info(`RESPONSE\n${JSON.stringify(req.body, null, 2)}`);
+			logger.info(`RESPONSE ${status}\n${JSON.stringify(body, null, 2)}`);
 		}
 	});
 
