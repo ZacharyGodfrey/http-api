@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const env = {
 	dbConnectionString: process.env.DB_CONNECTION,
 	useConsole: process.env.LOG_CONSOLE === 'true',

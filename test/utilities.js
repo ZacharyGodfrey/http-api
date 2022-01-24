@@ -2,13 +2,13 @@ const { expect } = require('chai');
 
 const util = require('../src/utilities');
 
-describe('src/util.js', () => {
+describe('src/utilities.js', () => {
 	describe('hmac()', () => {
 		it('should return a 64 character string', () => {
 			const expected = 64;
 			const actual = util.hmac('secret', 'value').length;
 
-			expect(actual).to.eq(expected)
+			expect(actual).to.eq(expected);
 		});
 	});
 
@@ -17,7 +17,7 @@ describe('src/util.js', () => {
 			const expected = 36;
 			const actual = util.uuid().length;
 
-			expect(actual).to.eq(expected)
+			expect(actual).to.eq(expected);
 		});
 	});
 });

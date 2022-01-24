@@ -4,16 +4,14 @@ module.exports = (env) => {
     const { environment } = env;
 
     return {
-        request: (actionName, token, data) => {
-            return {
-                id: uuid(),
-                time: new Date().toISOString(),
-                actionName,
-                token,
-                data,
-                user: null,
-            };
-        },
+        request: (actionName, token, data) => ({
+            id: uuid(),
+            time: new Date().toISOString(),
+            actionName,
+            token,
+            data,
+            user: null,
+        }),
         response: {
             success: (data) => ({
                 status: 200,
@@ -54,7 +52,7 @@ module.exports = (env) => {
                 status: 500,
                 body: {
                     data: null,
-                    messages: environment === 'production' ? 'Server Error' : message,
+                    messages: [environment === 'production' ? 'Server Error' : message],
                 },
             }),
         }

@@ -1,6 +1,8 @@
 const { expect } = require('chai');
 
-const db = require('../src/database')('fake-connection-string');
+const db = require('../src/database')({
+	dbConnectionString: 'fake-connection-string'
+});
 
 describe('src/database.js', () => {
 	describe('when calling db.userByToken()', () => {
@@ -8,7 +10,7 @@ describe('src/database.js', () => {
 			const expected = null;
 			const actual = await db.userByToken('fake token');
 
-			expect(actual).to.deep.eq(expected);
+			expect(actual).to.eq(expected);
 		});
 	});
 });

@@ -5,6 +5,7 @@
 		"start": "node scripts/start.js"
 	},
 	"dependencies": {
+		"dotenv": "^14.2.0",
 		"express": "^4.17.1",
 		"joi": "^17.4.2",
 		"uuid": "^8.3.2"
@@ -13,20 +14,36 @@
 		"chai": "^4.3.4",
 		"mocha": "^9.1.3",
 		"nyc": "^15.1.0",
-		"sinon": "^12.0.1"
+		"sinon": "^12.0.1",
+		"sinon-chai": "^3.7.0"
 	},
 	"mocha": {
 		"recursive": true
 	},
 	"nyc": {
-		"all": false,
+		"all": true,
 		"check-coverage": true,
+		"skip-full": true,
+		"include": [
+			"src/**/*.js"
+		],
+		"exclude": [
+			"src/server.js"
+		],
 		"reporter": [
+			"lcov",
 			"text-summary",
 			"text"
 		],
-		"lines": 90,
 		"statements": 90,
-		"branches": 90
+		"branches": 90,
+		"functions": 90,
+		"lines": 90,
+		"watermarks": {
+			"lines": [50, 90],
+			"functions": [50, 90],
+			"branches": [50, 90],
+			"statements": [50, 90]
+		}
 	}
 }
