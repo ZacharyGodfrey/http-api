@@ -1,5 +1,3 @@
-# http-api
-
 This project intends to use a small subset of the HTTP specification to implement a simple web API. The API will use JSON as the data format and HTTP as the transport protocol, but it's definitely not RESTful and isn't necessarily RPC either. This project is intentionally deviating from current "best practices" in pursuit of greater simplicity.
 
 ## Development Roadmap
