@@ -68,7 +68,7 @@ Only the following status codes will be returned:
 ## Local Development
 
 1. Create a `.env` file in the root directory of the repo
-2. Add the following line to the `.env` file: `DB_CONNECTION=your-connection-string`
+2. Add the following line to the `.env` file: `DB_URL=your-connection-string`
 3. Run `npm i` to install dependencies
 4. Run `npm run coverage` to execute unit tests and generage coverage report
 5. Run `npm run start` to run the API locally

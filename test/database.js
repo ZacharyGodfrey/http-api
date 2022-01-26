@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const db = require('../src/database')({
-	dbConnectionString: 'fake-connection-string'
+	dbUrl: 'fake-connection-string'
 });
 
 describe('src/database.js', () => {

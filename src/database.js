@@ -1,5 +1,5 @@
 module.exports = (env) => {
-	const { dbConnectionString } = env;
+	const { dbUrl } = env;
 
 	return {
 		userByToken: async (token) => {
