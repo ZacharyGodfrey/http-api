@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const env = {
-	dbConnectionString: process.env.DB_CONNECTION,
+	dbUrl: process.env.DB_URL,
 	useConsole: process.env.LOG_CONSOLE === 'true',
 	environment: process.env.NODE_ENV || 'local',
 	port: process.env.PORT || 8080
