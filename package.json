@@ -2,7 +2,7 @@
 	"scripts": {
 		"test": "mocha",
 		"coverage": "nyc npm run test",
-		"start": "node scripts/start.js"
+		"start": "node -r dotenv/config scripts/start.js"
 	},
 	"dependencies": {
 		"dotenv": "^14.2.0",
