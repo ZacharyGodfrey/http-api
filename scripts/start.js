@@ -1,7 +1,3 @@
-const dotenv = require('dotenv');
-
-dotenv.config();
-
 const env = {
 	dbUrl: process.env.DB_URL,
 	useConsole: process.env.LOG_CONSOLE === 'true',
