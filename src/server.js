@@ -28,23 +28,15 @@ module.exports = (context, requestHandler) => {
 
 	// Request Handler
 	server.post('/:actionName', async (req, res, next) => {
-		try {
-			logger.info(`REQUEST /${req.params.actionName}\n${JSON.stringify(req.body, null, 2)}`);
+		logger.info(`REQUEST /${req.params.actionName}\n${JSON.stringify(req.body, null, 2)}`);
 
-			const { token, data } = req.body;
-			const request = http.request(req.params.actionName, token || '', data);
-			const { status, body } = await requestHandler(request);
+		const { token, data } = req.body;
+		const request = http.request(req.params.actionName, token || '', data);
+		const { status, body } = await requestHandler(request);
 
-			res.status(status).json(body);
-			logger.info(`RESPONSE ${status}\n${JSON.stringify(body, null, 2)}`);
-		} catch (error) {
-			const { message } = error;
-			const { status, body } = http.response.serverError(message);
+		res.status(status).json(body);
 
-			logger.error(message);
-			res.status(status).json(body);
-			logger.info(`RESPONSE ${status}\n${JSON.stringify(body, null, 2)}`);
-		}
+		logger.info(`RESPONSE ${status}\n${JSON.stringify(body, null, 2)}`);
 	});
 
 	// 404

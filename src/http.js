@@ -2,6 +2,8 @@ const { uuid } = require('./utilities');
 
 module.exports = (env) => {
     const { environment } = env;
+    const isProd = environment === 'production';
+    const defaultError = 'Server Error';
 
     return {
         request: (actionName, token, data) => ({
@@ -52,7 +54,7 @@ module.exports = (env) => {
                 status: 500,
                 body: {
                     data: null,
-                    messages: [environment === 'production' ? 'Server Error' : message],
+                    messages: [isProd ? defaultError : message],
                 },
             }),
         }
